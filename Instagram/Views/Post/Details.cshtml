@@ -50,7 +50,7 @@
                         {
                             <div style="display: flex; width: 100%; justify-content: flex-end;">
                                 <button class="btn btn-warning" style="margin-right: 7px"> Редактировать</button>
-                                <button class="btn btn-danger"> Удалить </button>
+                                <button id="deletePost" class="btn btn-danger" data-post-id="@post.Id"> Удалить </button>
                             </div>   
                         }
                     </div>
@@ -97,6 +97,14 @@
                 var postId = $(this).data('post-id');
                 
                 $.post("/Post/Details", { postId: postId }, function (data) {
+                    location.reload();
+                });
+            });
+            
+            $('#deletePost').click(function () {
+                var postId = $(this).data('post-id');
+                
+                $.post("/Post/Delete", { postId: postId }, function (data) {
                     location.reload();
                 });
             });
