@@ -36,37 +36,37 @@ public class UserController: Controller
         if (!ModelState.IsValid)
             return View();
         
-            byte[] imageData = null;
-            if (model.Avatar.Length > 0)
+        byte[] imageData = null;
+        if (model.Avatar.Length > 0)
+        {
+            using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
             {
-                using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
-                {
-                    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
-                }
+                imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
             }
+        }
 
-            User? user = new User(
-                model.UserName,
-                model.Email,
-                imageData!,
-                model.Password,
-                model.Name,
-                model.Description,
-                model.Gender,
-                model.PhoneNumber);
+        User? user = new User(
+            model.UserName,
+            model.Email,
+            imageData!,
+            model.Password,
+            model.Name,
+            model.Description,
+            model.Gender,
+            model.PhoneNumber);
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+        var result = await _userManager.CreateAsync(user, model.Password);
 
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return RedirectToAction("Profile", "User", new { userId = user.Id });
-            }
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, false);
+            return RedirectToAction("Profile", "User", new { userId = user.Id });
+        }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError(string.Empty, error.Description);
+        foreach (var error in result.Errors)
+            ModelState.AddModelError(string.Empty, error.Description);
 
-            return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Home");
     }
     
     
@@ -127,6 +127,9 @@ public class UserController: Controller
     {
         var subscription = new Subscription(targetId, sourceId);
         var user = await _userManager.FindByIdAsync(targetId);
+
+        if (user is null)
+            return NotFound();
         
         var subscriberCheck = _db.Subscriptions
             .FirstOrDefault(s => s.SubscriberId == sourceId && s.TargetUserId == targetId);

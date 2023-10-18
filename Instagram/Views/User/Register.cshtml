@@ -93,19 +93,6 @@
 
 @section Scripts
 {
-    <script>
-    function logEmailValue() {
-        // Получаем элемент input по его ID
-        var emailInput = document.getElementById("inputEmail3");
-    
-        // Получаем значение, введенное в input
-        var emailValue = emailInput.value;
-    
-        // Выводим значение в консоль
-        console.log("Значение введенное в input с id='inputEmail3': " + emailValue);
-    }
-    </script>
-    
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

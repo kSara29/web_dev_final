@@ -25,23 +25,22 @@
             </div>
             @if (@Model.SourceId != @Model.TargetId)
             {
-                <form method="post" asp-controller="User"
-                      asp-action="Profile"
-                      asp-route-sourceId="@Model.SourceId"
-                      asp-route-targetId="@Model.TargetId">
-                    @if (@Model.Subscribed)
-                    {
-                        <div style="display: flex">
-                            <button type="submit" class="btn btn-secondary"> Отписаться </button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div style="display: flex">
-                            <button type="submit" class="btn btn-secondary"> Подписаться </button>
-                        </div>   
-                    }
-                </form>
+                
+                @if (@Model.Subscribed)
+                {
+                    <div style="display: flex">
+                        <button type="submit" class="btn btn-secondary" id="unsubscribeButton"
+                                onclick="subscribe('@Model.SourceId', '@Model.TargetId')"> Отписаться </button>
+                    </div>
+                }
+                else
+                {
+                    <div style="display: flex">
+                        <button type="submit" class="btn btn-secondary" id="subscribeButton"
+                                onclick="subscribe('@Model.SourceId', '@Model.TargetId')"> Подписаться </button>
+                    </div>   
+                }
+               
             }
             else
             {
@@ -64,6 +63,37 @@
         </div>
     </div>
 
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#subscribeButton').click(function (event) {
+                event.preventDefault();
+
+                let sourceId = "@Model.SourceId";
+                let targetId = "@Model.TargetId";
+
+                $.post("/User/Profile", { sourceId: sourceId, targetId: targetId }, function (data) {
+                    location.reload();
+
+                });
+            });
+
+            $('#unsubscribeButton').click(function (event) {
+                event.preventDefault(); 
+
+                let sourceId = "@Model.SourceId";
+                let targetId = "@Model.TargetId";
+
+                $.post("/User/Profile", { sourceId: sourceId, targetId: targetId }, function (data) {
+                    location.reload();
+
+                });
+            });
+        });
+    </script>
 }
 
 
