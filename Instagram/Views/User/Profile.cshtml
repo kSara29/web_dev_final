@@ -55,7 +55,9 @@
             <div class="row">
                 @foreach (var post in Model.Posts)
                 {
-                    <a style="width: auto" href="@Url.Action("Details", "Post", new { postId =  post.Id})">
+                    <a asp-controller="Post" asp-action="Details"
+                       asp-route-postId="@post.Id"
+                       asp-route-userId="@Model.TargetId" style="width: auto">
                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(post.Image)" alt="User Avatar" class="img-fluid">
                     </a>
                 }

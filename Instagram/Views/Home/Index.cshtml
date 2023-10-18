@@ -23,32 +23,30 @@
                              alt="User post" style="width: auto; height: auto; max-width: 1225px; max-height:600px; object-fit: cover">
                     </div>
                     <div style="padding: 10px">
-                        <form method="post" asp-controller="Home" asp-action="Index" asp-route-postId="@post.Id">
-                            @if (post.Likes.Count > 0)
+                        @if (post.Likes.Count > 0)
+                        {
+                            @foreach (var like in post.Likes)
                             {
-                                @foreach (var like in post.Likes)
+                                if (like.UserId == Model.CurrentUserId && like.PostId == post.Id)
                                 {
-                                    if (like.UserId == Model.CurrentUserId && like.PostId == post.Id)
-                                    {
-                                        Model.Liked = true;
-                                    }
+                                    Model.Liked = true;
                                 }
-                                if (Model.Liked)
-                                {
-                                    <button type="submit" class="btn btn-outline-danger"> Не нравится </button>
-                                    Model.Liked = false;
-                                }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-outline-success"> Нравится </button>
-                                    Model.Liked = false;
-                                }
+                            }
+                            if (Model.Liked)
+                            {
+                                <button type="submit" class="btn btn-outline-danger like-button" data-post-id="@post.Id"> Не нравится </button>
+                                Model.Liked = false;
                             }
                             else
                             {
-                                <button type="submit" class="btn btn-outline-success"> Нравится</button>
+                                <button type="submit" class="btn btn-outline-success like-button" data-post-id="@post.Id"> Нравится </button>
+                                Model.Liked = false;
                             }
-                        </form>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-outline-success like-button" data-post-id="@post.Id"> Нравится</button>
+                        }
                     </div>
                     <div>
                         <p style="padding-left:11px; margin:0px; font-size: 18px; font-weight: 500"> @post.Likes.Count отметок "Нравится"</p>
@@ -83,3 +81,18 @@
         }
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.like-button').click(function () {
+                var postId = $(this).data('post-id');
+                
+                $.post("/Home/Index", { postId: postId }, function (data) {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+}

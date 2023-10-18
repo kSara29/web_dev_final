@@ -63,11 +63,25 @@ public class PostController: Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Details(long postId)
+    public async Task<IActionResult> Details(long postId, string userId)
     {
-        //var userProfileId = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
         var currentUser = await _userManager.GetUserAsync(User);
+        var usertarget = await _userManager.FindByIdAsync(userId);
+        
+        var userSource = String.Empty;
+        var userTarget = String.Empty;
 
+        if (currentUser.Id == userId)
+        {
+            userSource = userId;
+            userTarget = userId;
+        }
+        else
+        {
+            userSource = currentUser.Id;
+            userTarget = userId;
+        }
+        
         var posts = _db.Posts.Where(p => p.Id == postId)
             .Include(p => p.User)
             .Include(p => p.Likes)
@@ -87,16 +101,18 @@ public class PostController: Controller
         var vm = new HomeVm
         {
             CurrentUserId = currentUser.Id,
-            Posts = posts
+            Posts = posts,
+            SourceId = userSource,
+            TargetId = userTarget
+            
         };
 
         return View(vm);
     }
     
     [HttpPost]
-    public async Task<IActionResult> Details(HomeVm vm, long postId)
+    public async Task<IActionResult> Details(HomeVm vm, long postId, string sourceId, string targetId)
     {
-        //var userProfile = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
         var user = await _userManager.GetUserAsync(User);
         var like = new Like(user.Id, postId);
         
@@ -142,9 +158,30 @@ public class PostController: Controller
         vm = new HomeVm
         {
             CurrentUserId = user.Id,
-            Posts = posts
+            Posts = posts,
+            SourceId = sourceId,
+            TargetId = targetId
         };
         
         return View(vm);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(long postId)
+    {
+        if (!ModelState.IsValid)
+            return NotFound();
+        
+        var user = await _userManager.GetUserAsync(User);
+        
+        if (user == null)
+            return NotFound();
+
+        var post = _db.Posts.FirstOrDefault(p => p.Id == postId);
+
+        _db.Posts.Remove(post);
+        _db.SaveChanges();
+        
+        return RedirectToAction("Profile", "User", new {userId = user.Id});
     }
 }
