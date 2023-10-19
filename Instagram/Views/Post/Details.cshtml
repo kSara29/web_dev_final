@@ -49,7 +49,10 @@
                         @if (@Model.SourceId == @Model.TargetId)
                         {
                             <div style="display: flex; width: 100%; justify-content: flex-end;">
-                                <button class="btn btn-warning" style="margin-right: 7px"> Редактировать</button>
+                                <button id="editPost" class="btn btn-warning" 
+                                        data-post-id="@post.Id" 
+                                        data-target-user="@Model.TargetId"
+                                        style="margin-right: 7px"> Редактировать</button>
                                 <button id="deletePost" class="btn btn-danger" data-post-id="@post.Id"> Удалить </button>
                             </div>   
                         }
@@ -107,6 +110,13 @@
                 $.post("/Post/Delete", { postId: postId }, function (data) {
                     location.reload();
                 });
+            });
+            
+            $('#editPost').click(function () {
+                var postId = $(this).data('post-id');
+                var targetUser = $(this).data('target-user');
+                
+                window.location.href = "/Post/Edit?postId=" + postId+ "&userId=" + targetUser;
             });
         });
     </script>

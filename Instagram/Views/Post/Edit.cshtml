@@ -1,0 +1,54 @@
+﻿@using System.Collections.Specialized
+@model Instagram.ViewModels.Post.PostEditVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div asp-validation-summary="ModelOnly"></div>
+            
+            <div class="row mb-3">
+                <label asp-for="Description" for="description" class="form-label">Описание</label>
+                <textarea asp-for="Description" class="form-control" id="description" rows="3" name="comment"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <button type="submit" id="editPost" @*onclick="sendComment(@Model.Id)"*@ class="btn btn-primary"> Опубликовать </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>     
+    $(document).ready(function (){
+        $('#editPost').click(function (){
+            event.defaultPrevented();
+            let comment = $('#description').val();
+            
+            // https://localhost/Users/SearchResults?keyWord=name
+            comment = encodeURIComponent(comment);
+            '@Url.Action("Edit", "Post")?postId=' + @Model.Id + '&comment=' + comment;
+        })    
+    })
+    /*function sendComment(postId) {
+        $.ajax({
+            url: '@Url.Action("Edit", "Post")',
+            type: 'POST',
+            data: { postId: postId, comment: $('#description').val() },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (data) {
+                if (data == null)
+                    console.log('Что-то пошло не так')
+            }
+        });
+    }*/
+    </script>
+}

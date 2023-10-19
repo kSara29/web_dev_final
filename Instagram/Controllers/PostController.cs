@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.PostgresTypes;
 
 namespace Instagram.Controllers;
 
@@ -183,5 +184,35 @@ public class PostController: Controller
         _db.SaveChanges();
         
         return RedirectToAction("Profile", "User", new {userId = user.Id});
+    }
+
+    [HttpGet]
+    public IActionResult Edit(long postId, string userId)
+    {
+        PostEditVm vm = new PostEditVm
+        {
+            Id = postId,
+            Description = "",
+            targetUser = userId
+        };
+        
+        return PartialView("EditPartial", vm);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SendComment(string comment, long postId)
+    {
+        var post = _db.Posts.FirstOrDefault(p => p.Id == postId);
+        var user = await _userManager.GetUserAsync(User);
+
+        var userId = user.Id;
+        if (post == null)
+            return NotFound();
+
+        post.Description = comment;
+        
+        _db.Posts.Update(post);
+        _db.SaveChanges();
+        return RedirectToAction("Profile", "User", new { userId = userId });
     }
 }

@@ -1,0 +1,37 @@
+﻿@using System.Collections.Specialized
+@model Instagram.ViewModels.Post.PostEditVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form>
+            <div asp-validation-summary="ModelOnly"></div>
+            
+            <div class="row mb-3">
+                <label asp-for="Description" for="description" class="form-label">Описание</label>
+                <textarea asp-for="Description" class="form-control" id="description" rows="3" name="comment"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <button type="submit" id="editPost" onclick="sendComment(event)" class="btn btn-primary"> Опубликовать </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>     
+            function sendComment(event) {
+                event.preventDefault();
+                let comment = $('#description').val();
+                let postId = @Model.Id
+                      
+                comment = encodeURIComponent(comment);
+                location.href = "@Url.Action("SendComment","Post")?comment=" + comment + "&postId=" + postId;
+            }
+    </script>
+}
