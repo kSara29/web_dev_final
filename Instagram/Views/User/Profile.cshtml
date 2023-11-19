@@ -44,9 +44,14 @@
             }
             else
             {
-                <form method="get" asp-controller="Post" asp-action="Add">
-                     <button type="submit" class="btn btn-secondary"> Добавить изображение </button>
-                </form>
+                <div style="display: flex; flex-direction: row;">
+                    <form method="get" asp-controller="Post" asp-action="Add">
+                        <button type="submit" class="btn btn-secondary"> Добавить изображение </button>
+                    </form>
+                    <form method="get" asp-controller="User" asp-action="Edit" style="margin-left: 25px">
+                        <button type="submit" class="btn btn-secondary"> Редактировать профиль </button>
+                    </form>
+                </div>
             }
         </div>
     </div>
