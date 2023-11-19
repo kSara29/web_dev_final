@@ -51,6 +51,12 @@
                     <form method="get" asp-controller="User" asp-action="Edit" style="margin-left: 25px">
                         <button type="submit" class="btn btn-secondary"> Редактировать профиль </button>
                     </form>
+                    @if (!@Model.User.EmailConfirmed)
+                    {
+                        <form method="post" asp-controller="User" asp-action="EmailConfirmation" style="margin-left: 25px">
+                            <button type="submit" class="btn btn-danger"> Подтвердить почту </button>
+                        </form>
+                    }
                 </div>
             }
         </div>

@@ -5,6 +5,7 @@ namespace Instagram.ViewModels.User;
 public class UserProfileVm
 {
     public string SourceId { get; set; }
+    public Models.User User { get; set; }
     public string TargetId { get; set; }
     public string UserName { get; set; }
     public string Info { get; set; }

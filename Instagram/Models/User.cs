@@ -13,12 +13,14 @@ public sealed class User: IdentityUser
     public List<Post> Posts { get; set; } = new();
     public List<Subscription> Subscriptions { get; set; } = new();
     public List<Subscription> Followers { get; set; } = new();
+    public string EmailConfirmationLink { get; set; }
 
     public User(
         string login,
         string email,
         byte[] avatar,
         string password,
+        string? link,
         string? name = null,
         string? description = null,
         Gender? gender = null,
@@ -33,6 +35,7 @@ public sealed class User: IdentityUser
         Gender = gender;
         PhoneNumber = phoneNumber;
         Password = password;
+        EmailConfirmationLink = link;
     }
     
     private User(){}

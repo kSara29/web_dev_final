@@ -5,6 +5,7 @@ using Instagram.ViewModels.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Instagram.Controllers;
@@ -48,13 +49,15 @@ public class UserController: Controller
                 imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
             }
         }
-        
+
+        var link = Guid.NewGuid().ToString();
 
         User? user = new User(
             model.UserName,
             model.Email,
             imageData!,
             model.Password,
+            link,
             model.Name,
             model.Description,
             model.Gender,
@@ -115,6 +118,7 @@ public class UserController: Controller
 
         var vm = new UserProfileVm
         {
+            User = user,
             UserName = usertarget.UserName,
             Info = usertarget.Description,
             Avatar = Convert.ToBase64String(usertarget.Avatar),
@@ -203,6 +207,9 @@ public class UserController: Controller
     public async Task<IActionResult> Login(UserLoginVm model)
     {
         User user = await _userManager.FindByEmailAsync(model.Email);
+        if (user is null)
+            return NotFound();
+        
         SignInResult result = await _signInManager.PasswordSignInAsync(
             user,
             model.Password,
@@ -361,5 +368,39 @@ public class UserController: Controller
         await _emailService.SendUserDataEmailAsync(user.Email, userData);
 
         return RedirectToAction("Profile", "User", new { userId = user.Id });
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EmailConfirmation()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var userData = await _db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
+        Console.WriteLine(Guid.NewGuid().ToString());
+        var link = Url.Action("ConfirmEmail", "User", new { userId = user.Id, link = userData.EmailConfirmationLink  }, protocol: HttpContext.Request.Scheme);
+        await _emailService.SendEmailConfirmationAsync(user.Email, link);
+
+        return RedirectToAction("Profile", "User", new { userId = user.Id });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ConfirmEmail(string userId, string link)
+    {
+        if (userId == null || link == null)
+            return NotFound();
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+            return NotFound();
+
+        if (user.EmailConfirmationLink == link)
+        {
+            user.EmailConfirmed = true;
+            await _userManager.UpdateAsync(user);
+            await _db.SaveChangesAsync();
+        }
+
+        return RedirectToAction("Profile", "User", new { userId = userId });
     }
 }

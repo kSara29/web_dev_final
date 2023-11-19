@@ -49,4 +49,12 @@ public class EmailService
 
         await SendEmailAsync(email, subject, message);
     }
+    
+    public async Task SendEmailConfirmationAsync(string email, string userData)
+    {
+        string subject = "Подтверждение почты";
+        string message = $"Перейдите по ссылке для подтверждения почты:<br>{userData}";
+
+        await SendEmailAsync(email, subject, message);
+    }
 }
