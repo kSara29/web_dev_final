@@ -41,4 +41,12 @@ public class EmailService
 
         await SendEmailAsync(email, subject, message);
     }
+    
+    public async Task SendUserDataEmailAsync(string email, string userData)
+    {
+        string subject = "Запрос данных профиля";
+        string message = $"Ваш запрос данных профиля:<br>{userData}";
+
+        await SendEmailAsync(email, subject, message);
+    }
 }

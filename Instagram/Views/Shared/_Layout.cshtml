@@ -33,9 +33,14 @@
                        <li class="nav-item">
                            @if (Context.Request.Path.StartsWithSegments("/User/Profile"))
                            {
-                               <form method="post" asp-controller="User" asp-action="LogOff">
-                                   <input type="submit" value="Выход" class="btn btn-danger" />
-                               </form>
+                               <div style="display: flex; flex-direction: row">
+                                   <form method="post" asp-controller="User" asp-action="UserDataRequest">
+                                       <input type="submit" value="Данные на почту" class="btn btn-warning" />
+                                   </form>
+                                   <form method="post" asp-controller="User" asp-action="LogOff" style="margin-left: 25px">
+                                       <input type="submit" value="Выход" class="btn btn-danger" />
+                                   </form>
+                               </div>
                            }
                            else
                            {

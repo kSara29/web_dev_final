@@ -331,4 +331,35 @@ public class UserController: Controller
 
         return RedirectToAction("Profile", "User", new { userId = user.Id });
     }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UserDataRequest()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        string userData = "Данные пользователя:\n";
+        userData += $"Логин: {user.UserName}\n";
+        userData += $"Номер телефона: {user.PhoneNumber}\n";
+        if (user.Name is not null)
+            userData += $"Имя: {user.Name}\n";
+        if (user.Description is not null)
+            userData += $"Описание: {user.Description}\n";
+        
+        var posts = _db.Posts.Where(p => p.UserId == user.Id)
+            .OrderByDescending(p => p.CreatedAt)
+            .Count();
+
+        var followerCount = _db.Subscriptions.Where(u => u.TargetUserId == user.Id).ToList().Count;
+        var followingCout = _db.Subscriptions.Where(u => u.SubscriberId == user.Id).ToList().Count;
+        var likesISend = _db.Likes.Where(u => u.UserId == user.Id).ToList().Count;
+        
+        userData += $"Всего постов: {posts}\n";
+        userData += $"Всего подписчиков: {followerCount}\n";
+        userData += $"Всего подписок: {followingCout}\n";
+        userData += $"Всего лайков поставленных мною: {likesISend}\n";
+        
+        await _emailService.SendUserDataEmailAsync(user.Email, userData);
+
+        return RedirectToAction("Profile", "User", new { userId = user.Id });
+    }
 }
