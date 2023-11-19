@@ -1,5 +1,6 @@
 using Instagram.Models;
 using Instagram.Persistence;
+using Instagram.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")))
     .AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddSingleton<EmailService>();
 
 var app = builder.Build();
 

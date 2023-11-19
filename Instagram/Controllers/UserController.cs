@@ -1,5 +1,6 @@
 ﻿using Instagram.Models;
 using Instagram.Persistence;
+using Instagram.Services;
 using Instagram.ViewModels.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,14 +14,17 @@ public class UserController: Controller
     private readonly AppDbContext _db;
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
+    private readonly EmailService _emailService;
 
     public UserController(AppDbContext db, 
             UserManager<User> userManager, 
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            EmailService emailService)
     {
         _db = db;
         _userManager = userManager;
         _signInManager = signInManager;
+        _emailService = emailService;
     }
 
     [HttpGet]
@@ -60,6 +64,7 @@ public class UserController: Controller
         if (result.Succeeded)
         {
             await _signInManager.SignInAsync(user, false);
+            await _emailService.SendEmailAsync(user.Email, "Регистрация", "Спасибо за регистрацию!");
             return RedirectToAction("Profile", "User", new { userId = user.Id });
         }
 
