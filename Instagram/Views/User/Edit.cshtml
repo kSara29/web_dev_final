@@ -1,0 +1,109 @@
+﻿@using Instagram.Enums
+@model Instagram.ViewModels.User.UserEditVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Редактирование профиля</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data" asp-controller="User" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="row mb-3">
+                <label asp-for="UserName" for="login" class="col-sm-2 col-form-label">Логин</label>
+                <div class="col">
+                    <input asp-for="UserName" type="text" class="form-control" id="login">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="Avatar" for="inputGroupFile01" class="col-sm-2 col-form-label">Аватар</label>
+                <input asp-for="Avatar" type="file" class="form-control" id="inputGroupFile01">
+                <span asp-validation-for="Avatar" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="Name" for="name" class="col-sm-2 col-form-label">Имя</label>
+                <div class="col">
+                    <input asp-for="Name" type="text" class="form-control" id="name">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="PhoneNumber" for="phone" class="col-sm-2 col-form-label" type="typeNumber">Номер телефона</label>
+                <div class="col">
+                    <input asp-for="PhoneNumber"
+                           placeholder="87011234567"
+                           type="tel" class="form-control" id="phone" pattern="[0-9]{11}"/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="Description" for="description" class="form-label">Информация о пользователе</label>
+                <textarea asp-for="Description" class="form-control" id="description" rows="3"></textarea>
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="changePasswordBtn">Изменить пароль</button>
+             
+             <div id="changePasswordForm" style="display: none;">
+                 <input type="hidden" id="changePassword" name="ChangePassword" value="false" />
+             
+                 <div class="row mb-3">
+                     <label asp-for="OldPassword" class="col-sm-2 col-form-label">Старый пароль</label>
+                     <div class="col-sm-10">
+                         <input asp-for="OldPassword" type="password" class="form-control" id="inputPassword"/>
+                         <span asp-validation-for="OldPassword" class="text-danger"></span>
+                     </div>
+                 </div>
+             
+                 <div class="row mb-3">
+                     <label asp-for="NewPassword" class="col-sm-2 col-form-label">Новый пароль</label>
+                     <div class="col-sm-10">
+                         <input asp-for="NewPassword" type="password" class="form-control" id="inputPasswordConfirm"/>
+                         <span asp-validation-for="NewPassword" class="text-danger"></span>
+                     </div>
+                 </div>
+             </div>
+            
+            <button type="submit" data-userId="@ViewBag.userId" id="SendChanges" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+
+@*
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#changePasswordBtn").click(function () {
+                $("#changePasswordForm").css("display", "block")
+                $("#changePassword").val($("#changePasswordForm").is(":visible"));
+            });
+
+            $("#submitPasswordChange").click(function () {
+                var formData = new FormData($('form')[0]);
+
+                $.ajax({
+                    url: "/User/Edit",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        window.location.href = "/User/Profile?userId="+@ViewBag.userId;
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+}*@

@@ -1,4 +1,28 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    $("#changePasswordBtn").click(function () {
+        $("#changePasswordForm").css("display", "block")
+        $("#changePassword").val($("#changePasswordForm").is(":visible"));
+        $("#changePasswordBtn").css("display", "none");
+    });
 
-// Write your JavaScript code.
+    const el = document.querySelector("#SendChanges");
+    let userid = el.dataset.userid;
+    
+    $("#submitPasswordChange").click(function () {
+        var formData = new FormData($('form')[0]);
+
+        $.ajax({
+            url: "/User/Edit",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                window.location.href = "/User/Profile?userId="+userid
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+});

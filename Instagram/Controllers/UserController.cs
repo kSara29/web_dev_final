@@ -67,8 +67,7 @@ public class UserController: Controller
         if (result.Succeeded)
         {
             await _signInManager.SignInAsync(user, false);
-            //await _emailService.SendEmailAsync(user.Email, "Регистрация", "Спасибо за регистрацию!");
-            await _emailService.SendWelcomeAsync(user.Email, user.UserName, 
+            await _emailService.SendWelcomeEmailAsync(user.Email, user.UserName, 
                 Url.Action("Profile", "User", new { userId = user.Id }, protocol: HttpContext.Request.Scheme));
 
             return RedirectToAction("Profile", "User", new { userId = user.Id });
@@ -256,5 +255,80 @@ public class UserController: Controller
             .ToList();
 
         return View(users);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        ViewBag.userId = user.Id;
+        
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(UserEditVm model)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        
+        string changesInfo = $"Изменения в профиле пользователя:\n";
+        
+        if (model.ChangePassword)
+        {
+            if (user != null)
+            {
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                changesInfo += $"Вы изменили пароль\n";
+                user.Password = model.NewPassword;
+                if (!result.Succeeded)
+                    return Json(new { success = false, errors = result.Errors });
+            }
+        }
+        
+        byte[] imageData = null;
+
+        if (model.Avatar is not null)
+        {
+            if (model.Avatar.Length > 0)
+            {
+                using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                }
+            }   
+        }
+
+        if (!string.IsNullOrEmpty(model.Name) && model.Name != user.Name)
+        {
+            user.Name = model.Name;
+            changesInfo += $"Имя: {model.Name}\n";
+        }
+        if (!string.IsNullOrEmpty(model.UserName) && model.UserName != user.UserName)
+        {
+            user.UserName = model.UserName;
+            changesInfo += $"Логин: {model.UserName}\n";
+        }
+        if (imageData is not null && imageData != user.Avatar)
+        {
+            user.Avatar = imageData;
+            changesInfo += $"Изменено фото профиля\n";
+        }
+        if (!string.IsNullOrEmpty(model.Description) && model.Description != user.Description)
+        {
+            user.Description = model.Description;
+            changesInfo += $"Описание: {model.Description}\n";
+        }
+        if (!string.IsNullOrEmpty(model.PhoneNumber) && model.PhoneNumber != user.PhoneNumber)
+        {
+            user.PhoneNumber = model.PhoneNumber;
+            changesInfo += $"Номер телефона: {model.PhoneNumber}\n";
+        }
+
+        await _db.SaveChangesAsync();
+        
+        await _emailService.SendUserEditEmailAsync(user.Email, changesInfo);
+
+
+        return RedirectToAction("Profile", "User", new { userId = user.Id });
     }
 }
