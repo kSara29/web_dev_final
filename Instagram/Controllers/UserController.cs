@@ -48,6 +48,7 @@ public class UserController: Controller
                 imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
             }
         }
+        
 
         User? user = new User(
             model.UserName,
@@ -58,13 +59,18 @@ public class UserController: Controller
             model.Description,
             model.Gender,
             model.PhoneNumber);
-
+        
+        
         var result = await _userManager.CreateAsync(user, model.Password);
-
+        
+        
         if (result.Succeeded)
         {
             await _signInManager.SignInAsync(user, false);
-            await _emailService.SendEmailAsync(user.Email, "Регистрация", "Спасибо за регистрацию!");
+            //await _emailService.SendEmailAsync(user.Email, "Регистрация", "Спасибо за регистрацию!");
+            await _emailService.SendWelcomeAsync(user.Email, user.UserName, 
+                Url.Action("Profile", "User", new { userId = user.Id }, protocol: HttpContext.Request.Scheme));
+
             return RedirectToAction("Profile", "User", new { userId = user.Id });
         }
 

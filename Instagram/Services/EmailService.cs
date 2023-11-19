@@ -25,4 +25,12 @@ public class EmailService
             await client.DisconnectAsync(true);
         }
     }
+    
+    public async Task SendWelcomeAsync(string email, string userName, string link)
+    {
+        string subject = "Добро пожаловать!";
+        string message = $"Добро пожаловать, {userName}!<br>Спасибо за регистрацию. Вы можете посмотреть ваш профиль по ссылке: {link}";
+
+        await SendEmailAsync(email, subject, message);
+    }
 }
