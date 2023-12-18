@@ -17,6 +17,22 @@ Handles the POST request for the home page (for handling likes and comments).
 ###### Details: 
 Retrieves the current user using _userManager.GetUserAsync(User). Creates a new Like object for the current user and the specified post. Adds a new comment to the post if vm.UserComment is not null. Checks if the current user has already liked the post, and either adds or removes the like accordingly. Refreshes the list of following users' posts and loads user details for comments. Creates a new HomeVm to pass data to the view. Returns the view with the updated HomeVm.
 
+##### ValidationController
+###### Purpose: 
+Initializes an instance of the ValidationController.
+
+##### CheckName
+###### Purpose: 
+Checks if a username is already taken.
+###### Details: 
+Queries the database to check if any user has the specified username (case-insensitive). Returns true if the username is available (not taken), and false otherwise.
+
+##### EmailCheck
+###### Purpose: 
+Checks if an email address is already registered.
+###### Details: 
+Queries the database to check if any user has the specified email address (case-insensitive). Returns true if the email address is available (not registered), and false otherwise.
+
 ### Services
 #### EmailService
 These methods encapsulate different scenarios for sending emails in the context of a web application, such as welcoming new users, notifying users of profile edits, responding to data requests, and confirming email addresses. Each method builds on the generic SendEmailAsync method, allowing for flexibility and reusability in handling various email-related tasks.
