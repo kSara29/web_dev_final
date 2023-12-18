@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YNu2QbPz8u4NUljSg6uMqs7H3yby9WoyqSGOA3Li1O0oPMcA6fOuuQtP8v2xqM3TX8iS/2zgRnrltiuNf11Y9A==",
+  "dgSpecHash": "lwKuBi9u/6V2hoAnHVt/lfWuB083odwTxZStdffTikiiTOjzKmGEIuP6850uKKX5e1m/igScIK7TcUWRAwR84g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\Instagram.csproj",
+  "projectFilePath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\Instagram.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kuand\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\kuand\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

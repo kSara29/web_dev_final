@@ -9,75 +9,75 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Instagram
 build_property.RootNamespace = Instagram
-build_property.ProjectDir = C:\Users\kuand\OneDrive\Рабочий стол\study\attractor_school\month_9\lesson_72\homework_63_sara_kuandykova\Instagram\
+build_property.ProjectDir = C:\Users\kuand\OneDrive\Рабочий стол\web_dev_final\Instagram\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\kuand\OneDrive\Рабочий стол\study\attractor_school\month_9\lesson_72\homework_63_sara_kuandykova\Instagram
+build_property.MSBuildProjectDirectory = C:\Users\kuand\OneDrive\Рабочий стол\web_dev_final\Instagram
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Home/Index.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Home/Privacy.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Post/Add.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Post/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Post/Details.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Post/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Post/Edit.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Post/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Post/EditPartial.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Post/EditPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxFZGl0UGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Shared/Error.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/User/Edit.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/User/Login.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/User/Profile.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/User/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/User/Register.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/User/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/User/Search.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/User/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/_ViewImports.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/_ViewStart.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kuand/OneDrive/Рабочий стол/study/attractor_school/month_9/lesson_72/homework_63_sara_kuandykova/Instagram/Views/Shared/_Layout.cshtml]
+[C:/Users/kuand/OneDrive/Рабочий стол/web_dev_final/Instagram/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-s29hfuabq2

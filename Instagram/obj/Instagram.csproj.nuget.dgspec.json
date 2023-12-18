@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\Instagram.csproj": {}
+    "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\Instagram.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\Instagram.csproj": {
+    "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\Instagram.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\Instagram.csproj",
+        "projectUniqueName": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\Instagram.csproj",
         "projectName": "Instagram",
-        "projectPath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\Instagram.csproj",
+        "projectPath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\Instagram.csproj",
         "packagesPath": "C:\\Users\\kuand\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\study\\attractor_school\\month_9\\lesson_72\\homework_63_sara_kuandykova\\Instagram\\obj\\",
+        "outputPath": "C:\\Users\\kuand\\OneDrive\\Рабочий стол\\web_dev_final\\Instagram\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kuand\\AppData\\Roaming\\NuGet\\NuGet.Config",
