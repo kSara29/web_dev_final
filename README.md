@@ -1,7 +1,7 @@
 ## Documentation
 
 ### Controllers
-##### HomeController
+#### HomeController
 ###### Purpose: 
 Initializes an instance of the HomeController.
 
@@ -32,6 +32,9 @@ Queries the database to check if any user has the specified username (case-insen
 Checks if an email address is already registered.
 ###### Details: 
 Queries the database to check if any user has the specified email address (case-insensitive). Returns true if the email address is available (not registered), and false otherwise.
+
+#### PostController
+It contains methods for adding, editing, and deleting posts. Features include handling image uploads, user comments, and likes. The controller uses entity framework for database operations and integrates user authentication. This file is crucial for managing user-generated content and ensuring interactive user engagement on the platform.
 
 ### Services
 #### EmailService
