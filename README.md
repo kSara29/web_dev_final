@@ -36,6 +36,10 @@ Queries the database to check if any user has the specified email address (case-
 #### PostController
 It contains methods for adding, editing, and deleting posts. Features include handling image uploads, user comments, and likes. The controller uses entity framework for database operations and integrates user authentication. This file is crucial for managing user-generated content and ensuring interactive user engagement on the platform.
 
+#### UserController
+It manages user-related functionalities including registration, profile management, login, logoff, and user search. The controller integrates user authentication, database interactions and email services. It also handles user data requests, email confirmations, and profile editing, indicating comprehensive user management capabilities.
+
+
 ### Services
 #### EmailService
 These methods encapsulate different scenarios for sending emails in the context of a web application, such as welcoming new users, notifying users of profile edits, responding to data requests, and confirming email addresses. Each method builds on the generic SendEmailAsync method, allowing for flexibility and reusability in handling various email-related tasks.
