@@ -17,7 +17,7 @@ Handles the POST request for the home page (for handling likes and comments).
 ###### Details: 
 Retrieves the current user using _userManager.GetUserAsync(User). Creates a new Like object for the current user and the specified post. Adds a new comment to the post if vm.UserComment is not null. Checks if the current user has already liked the post, and either adds or removes the like accordingly. Refreshes the list of following users' posts and loads user details for comments. Creates a new HomeVm to pass data to the view. Returns the view with the updated HomeVm.
 
-##### ValidationController
+#### ValidationController
 ###### Purpose: 
 Initializes an instance of the ValidationController.
 
