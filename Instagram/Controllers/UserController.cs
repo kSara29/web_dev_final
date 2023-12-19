@@ -376,10 +376,13 @@ public class UserController: Controller
     {
         var user = await _userManager.GetUserAsync(User);
         var userData = await _db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
-        Console.WriteLine(Guid.NewGuid().ToString());
+        var emailLink = Guid.NewGuid().ToString();
+        userData.EmailConfirmationLink = emailLink;
+        await _db.SaveChangesAsync();
+        
         var link = Url.Action("ConfirmEmail", "User", new { userId = user.Id, link = userData.EmailConfirmationLink  }, protocol: HttpContext.Request.Scheme);
         await _emailService.SendEmailConfirmationAsync(user.Email, link);
-
+        
         return RedirectToAction("Profile", "User", new { userId = user.Id });
     }
 
